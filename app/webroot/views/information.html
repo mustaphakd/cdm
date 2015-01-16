@@ -1,0 +1,18 @@
+<div>
+    <div class="page-header">
+        <h1>Information Hotlines <small class="pull-right">{{view}}</small></h1>
+    </div>
+    <div class="modMenu col-lg-offset-10 col-md-offset-6">
+        <div class=" pull-right">
+            <div class="btn-group ">
+                <!--<label class="btn btn-default" ng-model="viewModel" btn-radio="'map'" uncheckable><i class="fa fa-th fa-2x"></i></label>-->
+                <label class="btn btn-default" ng-model="viewModel" btn-radio="'list'" uncheckable><i class="fa fa-list-ul fa-2x"></i></label>
+                <label  class="btn btn-default" ng-model="viewModel" btn-radio="'add'" uncheckable ><i class="fa fa-plus-square-o fa-2x" popover-placement="left" popover-trigger="mouseenter" popover="Add more information" ></i></label>
+
+            </div>
+        </div>
+    </div>
+    <div class="modContent">
+        <div class="slide-animate" ng-include="viewUrl"></div>
+    </div>
+</div>

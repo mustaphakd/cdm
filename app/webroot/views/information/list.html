@@ -1,0 +1,21 @@
+<div ng-init="loaded = LoadInfos();">
+    <accordion close-others="true">
+        <accordion-group heading="{{info.countryName}}" ng-repeat="info in infos">
+
+            <div ng-if="info.provinces != null" ng-repeat="province in info.provinces">
+
+                <h3><span class="label label-default">{{province.provinceName}}</span></h3>
+                <div class="panel panel-default list-group">
+                    <!-- Default panel contents
+                    <div class="panel-heading"></div>-->
+
+                    <!-- Table -->
+                    <a ng-init="clClass = null" ng-click="angular.preventDefault(); contactInfoSelected(contactInfo);" class="list-group-item" ng-class="contactInfo.clClass "   ng-repeat="contactInfo in province.contactInfos">
+                        <h4 class="list-group-item-heading">{{contactInfo.contact}}</h4>
+                        <p class="list-group-item-text">{{contactInfo.synop}}</p>
+                    </a>
+                </div>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>

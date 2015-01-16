@@ -1,0 +1,102 @@
+<div class="page-header">
+    <h1>Medical Centers <small class="pull-right">Add medical centers</small></h1>
+</div>
+<div class="modContent" style="overflow: visible">
+
+    <div id="leafletContainer2"  class="leafletContainer col-xs-12 col-md-8 col-lg-12 maxWidthHeight magnifyMap" style="background-color: #f7da23" >
+
+        <oz-d3-map generate-leaflet="true" disabled-zooming="true" leaflet-container-id="leafletContainer2" process-coord="processLatLong"
+                   highlight-on-mouse-over="true" get-map="getMap(parentEntity)" area-class="countriesClass" scale="2" get-map-updater="getMapUpdate()"
+                   active-class=" activeCountry" leaflet-enable-marker="true"
+                   set-leaflet-lat-long-coord="getLeafletLatLongCoord"
+                   get-leaflet-lat-long-coord-updater="setLeafletLatLongCoord()"
+                   get-map-marker-updater="getMarkerIconUpdater()" get-marker-icon="getMarkerIcon"
+                   map-marker-notifier="markersLoaderUpdater()" get-map-markers="loadMarkers(mapWrapper)"
+                ></oz-d3-map>
+    </div>
+    <div class="col-xs-12 col-md-7  col-lg-pull-5 floatLeftonMaxWidth">
+        <accordion close-others="oneAtATime">
+            <accordion-group  is-open="newMedCenterModel.formOpenned" class="panelHeaderSmple transparentBckgrnd" is-disabled="addViewModel.isDisabled">
+                <accordion-heading >
+
+                    <span  class="countryTitle" ng-show="newMedCenterModel.processing"><i class="fa fa-cog fa-spin fa-3x"></i></span>
+
+                    <a    >
+
+                        <i class="col-sm-offset-8 fa fa-plus fa-4x calebass" popover-placement="left" popover='Click to add new center' popover-trigger="mouseenter" ></i>
+                        <i class="col-sm-offset-8 fa fa-plus fa-4x sourinie" popover-placement="right" popover='Click to add new center' popover-trigger="mouseenter" ></i>
+                    </a>
+                </accordion-heading>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title">Add a new medical location</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group" ng-class="validation.name.errorClass">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="newMedCenterModel.name" id="inputname" placeholder="Medical Center name ">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.name.showError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="validation.capacity.errorClass">
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" ng-model="newMedCenterModel.capacity" id="inputcapacity" placeholder="Medical Center Capacity ">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.capacity.showError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="validation.centerType.errorClass">
+                                <div class="col-sm-10">
+                                    <select ng-change="medCenterTypeChanged()" ng-model="newMedCenterModel.centerType" class="form-control input-lg" placeholder="Select the genre of the center" ng-options="center.id as center.name for center in medCenterOptions"  >
+                                        <option value="" >Please select an Option</option>
+                                    </select>
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.centerType.showError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="validation.country.errorClass">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="newMedCenterModel.country" id="inputcountry" placeholder="Select from one the highlighted areas on the map " ng-readonly>
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.country.showError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="validation.province.errorClass">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="newMedCenterModel.province" id="inputprovince" placeholder="Select from one the highlighted areas on the map " ng-readonly>
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.province.showError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="validation.detail.errorClass">
+                                <div class="col-sm-10">
+                                    <textarea rows="5" class="form-control" ng-model="newMedCenterModel.detail" id="txtareaGeom" placeholder="Provide brief description of the center"></textarea>
+                                </div>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.detail.showError"></span>
+                            </div>
+                            <div class="form-group col-xs-12" >
+                                <form class="form-horizontal spacer" role="form">
+                                    <div class="form-group" >
+                                        <div class=" col-sm-12">
+                                            <div class="alert alert-success " ng-class="newMedCenterModel.buttonsDivClass" role="alert" ng-click="saveNewMedCenter()">
+                                                <a  class="alert-link col-xs-offset-6">Save</a>
+                                            </div>
+                                            <div class="alert alert-danger " ng-class="newMedCenterModel.buttonsDivClass" role="alert" ng-click="cancelNewMedCenter()">
+                                                <a  class="alert-link col-xs-offset-6">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </accordion-group>
+        </accordion>
+    </div>
+
+</div>

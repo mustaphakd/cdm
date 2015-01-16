@@ -1,0 +1,17 @@
+<div >
+    <div class="page-header" ng-init="viewTitle='Pending cases'">
+        <h1>Cases <small class="pull-right">{{viewTitle}}</small></h1>
+    </div>
+    <div class="modMenu col-lg-offset-10 col-md-offset-6">
+        <div class=" pull-right"  viewModel = 'pending'">
+            <div class="btn-group ">
+                <label ng-click="caseViewUrl = 'views/cases/pending.html'; viewTitle = 'Pending cases' " class="btn btn-default" ng-model="viewModel" btn-radio="'pending'" uncheckable><i class="fa fa-ellipsis-h fa-2x"></i></label>
+                <label ng-click="caseViewUrl = 'views/cases/add.html'; viewTitle = 'Add new case' " class="btn btn-default" ng-model="viewModel" btn-radio="'add'" uncheckable><i class="fa fa-plus-square-o fa-2x" ></i></label>
+                <label ng-click="caseViewUrl = 'views/cases/charts.html'; viewTitle = 'Charts' " class="btn btn-default" ng-model="viewModel" btn-radio="'map'" uncheckable><i class="fa fa-bar-chart-o fa-2x"></i></label>
+            </div>
+        </div>
+    </div>
+    <div class="modContent" style="min-height: 500px;">
+        <div class="slide-animate" ng-include="caseViewUrl"></div>
+    </div>
+</div>

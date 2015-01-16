@@ -1,0 +1,129 @@
+<div class="col-xs-12 col-md-3" ng-init="initMod();" >
+   <!-- drop down filter --->
+    <div>
+        <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-default">Filter</button>
+            <button type="button" class="btn btn-default dropdown-toggle" >
+                <span class="fa fa-filter"></span>
+                <span class="sr-only">Filter</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-repeat-start="caseType in caseTypes"><a ng-click="angular.preventDefault(); filterSelected(caseType.id);">{{caseType.name}}</a></li>
+                <li ng-repeat-end class="divider" ng-if="$index + 2 == caseTypes.length "></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- master list --->
+
+    <div class="list-group spacer masterList">
+        <a ng-click="angular.preventDefault();" class="list-group-item disabled">
+            <h3>Cases</h3>
+        </a>
+        <a ng-repeat="case in cases | filterWithNull:filterModel:'caseStatus'" ng-class="case.clClass" ng-click="angular.preventDefault();masterItemSelected(case)" class="list-group-item">{{case.name}}</a>
+    </div>
+
+</div>
+
+<div class="col-xs-12  col-md-9 " >
+
+    <!-- Pending Cog-->
+
+    <div class="coqPending" ng-show="processing"><i class="fa fa-cog fa-spin fa-5 fa-5x "></i> </div>
+
+
+    <!-- map -->
+
+    <div id="casePendingleafletContainer" class="col-xs-12">
+        <oz-d3-map generate-leaflet="true" disabled-zooming="true" leaflet-container-id="casePendingleafletContainer"
+                   highlight-on-mouse-over="false" get-map="getMap(parentEntity)"
+                   leaflet-enable-marker="true"
+                   map-marker-notifier="markersLoaderUpdater()" get-map-markers="loadMarkers(mapWrapper)"
+                   skip-d3-drawings="true"
+                ></oz-d3-map>
+
+    </div>
+
+
+
+    <!-- Notes grid -->
+    <div class="col-xs-12 col-md-7">
+        <div class="panel panel-default" >
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+
+                Notes
+
+
+                <span class="pull-right ">
+
+                    <span class=" " ng-click="saveAppendNote();" ng-show="showSaveCancelAppendNoteBtn" ><i class="fa fa-save fa-2x"></i></span>
+
+                    <span class="  " ng-click="cancelAppendNote();" ng-show="showSaveCancelAppendNoteBtn" ><i class="fa fa-remove fa-2x"></i></span>
+
+                    <span class="list-group-item-success" ng-click="appendNote();" ><i class="fa fa-plus-circle fa-2x"></i></span>
+
+
+                </span>
+            </div>
+            <div style="height: 300px;overflow-y: auto;">
+            <!-- Table -->
+            <table class="table" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+
+                <tbody >
+
+                <tr ng-repeat="note in notes" ng-class="{'list-group-item-success' : $even}" popover="{{note.note}}" popover-trigger="mouseenter">
+                    <th scope="row"> {{$index + 1 }}- {{note.id}}</th>
+                    <td >{{note.date}}</td>
+                    <td ng-show="note.status == 'unchanged'">{{note.note | limitTo:10}}</td><td ng-show="note.status == 'added'"><input type="text" ng-model="note.note" /></td>
+
+                </tr>
+                </tbody>
+
+            </table> </div>
+        </div>
+    </div>
+
+    <!-- Desciption and Case Status updater Dropdowner-->
+
+    <div class="col-xs-12 col-md-5">
+
+        <!-- Case Status updater-->
+        <div ng-show="selectedItemCaseStatusConfigured == false">
+            <div class="btn-group" dropdown>
+                <button type="button" class="btn btn-default">{{selectedItemCaseStatusLabel}}</button>
+                <button type="button" class="btn btn-default dropdown-toggle" >
+                    <span class="fa fa-caret-down"></span>
+                    <span class="sr-only">Case Status</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-if="caseType.id != null" ng-repeat-start="caseType in selectedItemCaseTypes"><a ng-click="angular.preventDefault(); setSelectedItemCaseStatus(caseType.id);">{{caseType.name}}</a></li>
+                    <li ng-repeat-end class="divider" ng-if="$index + 2 == caseTypes.length "></li>
+                </ul>
+            </div>
+            <span class="list-group-item-success" ng-click="saveSelectedItemCaseStatus();"><i class="fa fa-save fa-2x"></i></span>
+
+            <span class="list-group-item-success" ng-click="cancelSelectedItemCaseStatus();"><i class="fa fa-remove fa-2x"></i></span>
+        </div>
+
+        <!-- description Panel-->
+
+        <div class="panel panel-default" style="height: 300px;overflow-y: auto;">
+            <div class="panel-heading">Description</div>
+            <div class="panel-body">
+                {{currentMasterSelection.synop}}
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

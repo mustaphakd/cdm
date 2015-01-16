@@ -1,0 +1,94 @@
+<div>
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-12 maxWidthHeight" >
+
+                <oz-d3-map process-coord="processLatLong" highlight-on-mouse-over="true" get-map="getMap(parentEntity)" area-class="countriesClass" scale="2" get-map-updater="getMapUpdate()" active-class=" activeCountry" ></oz-d3-map>
+
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-4 col-lg-pull-6 floatLeftonMaxWidth">
+        <accordion close-others="oneAtATime">
+            <accordion-group  is-open="addViewModel.openned" class="panelHeaderSmple transparentBckgrnd" is-disabled="addViewModel.isDisabled">
+                <accordion-heading >
+
+                    <span  class="countryTitle" ng-show="addViewModel.newModel.processing"><i class="fa fa-cog fa-spin fa-3x"></i></span>
+
+                   <a ng-click="addViewModel.addNewCountry()"   >
+
+                       <i class="col-sm-offset-8 fa fa-plus fa-4x calebass" popover-placement="left" popover='{{addViewModel.popoverString}}' popover-trigger="mouseenter" ></i>
+                       <i class="col-sm-offset-8 fa fa-plus fa-4x sourinie" popover-placement="right" popover='{{addViewModel.popoverString}}' popover-trigger="mouseenter" ></i>
+                   </a>
+                </accordion-heading>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title">{{addViewModel.panelTitle}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group" ng-class="validation.countryName.errorClass">
+                                <!--<label for="inputcountry" class="col-sm-2 control-label">Country</label> -->
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="addViewModel.newModel.name" id="inputcountry" placeholder="{{addViewModel.placeholder}}">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.countryName.showError"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="txtareaGeom" class="col-sm-2 control-label">Geometry Definition</label>-->
+                                <div class="col-sm-10">
+                                    <textarea rows="5" class="form-control" ng-model="addViewModel.newModel.coordinates" id="txtareaGeom" placeholder="Enter Polygon coordinates"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <div class=" col-sm-12">
+                                    <div class="alert alert-success " ng-class="addViewModel.buttonsDivClass" role="alert" ng-click="addViewModel.savecountry()">
+                                        <a  class="alert-link">Save</a>
+                                    </div>
+                                    <div class="alert alert-danger " ng-class="addViewModel.buttonsDivClass" role="alert" ng-click="addViewModel.cancelcountry()">
+                                        <a  class="alert-link">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </accordion-group>
+        </accordion>
+    </div>
+        <div class="centerFloat col-xs-12 col-md-8 collapse import-export-form-collapse" ng-class="{divBtnDisabled : importExport.operationBeingProcessed }">
+            <div class="well well-lg">
+                <h3>{{importExport.title}}</h3>
+                <div class="zero-clipboard"><span class="btn btn-clipboard" ng-click="importExport.exportToClipboard()">Copy</span></div>
+                <div class="panel panel-default">
+                    <div class="panel-body" >
+                        <form role="form">
+                            <div class="form-group" >
+                                <label for="txtAreaImpExp">Geo data fragment</label>
+                                 <textarea rows="6" ng-model="importExport.data" class="form-control" id="txtAreaImpExp" placeholder="{{importExport.dataPlaceHolder}}"></textarea>
+                             </div>
+                             <div class="form-group" >
+                                 <div class=" col-xs-12">
+                                     <div class="alert alert-success " role="alert" ng-click="importExport.completeOperation()" ng-class="{disabled: importExport.operationBeingProcessed == true}" >
+                                        <div class="btn-lg freeBtn"> <a  class="alert-link col-md-offset-3">{{importExport.buttonTitle}}</a> </div>
+                                     </div>
+                                     <div class="alert alert-danger "  role="alert" ng-click="importExport.cancelOperation()">
+                                         <div class="btn-lg freeBtn "> <a  class="alert-link col-md-offset-3" > {{importExport.cancelButtonTitle}}</a></div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-xs-12 col-md-offset-1 col-md-5 btn btn-lg btn-primary" ng-class="{disabled: importExport.importEnabled == false}" ng-click="importExport.onImportClicked()" data-toggle="collapse" data-target=".import-export-form-collapse"  popover-placement="top" popover='Import' popover-trigger="mouseenter" >
+             <i class="fa fa-cloud-upload fa-3x"></i>
+         </div>
+         <div class="col-xs-12 col-md-5 btn btn-lg btn-primary" ng-class='{disabled: importExport.exportEnabled == false}' ng-click="importExport.onExportClicked()"  data-toggle="collapse" data-target=".import-export-form-collapse" popover-placement="top" popover='Export' popover-trigger="mouseenter" >
+             <i class="fa fa-download fa-3x"></i>
+         </div>
+     </div>
+
+ </div>

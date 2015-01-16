@@ -1,0 +1,79 @@
+<div>
+    <div class="forms">
+        <form class="form-horizontal" role="form" >
+
+            <!-- Country-->
+            <div class="form-group " ng-class="validation.country.errorClass">
+                <label for="inputCountry" class="col-sm-2 control-label">Country</label>
+                <div class="col-sm-2">
+                    <div class="btn-group" dropdown>
+                        <button type="button" class="btn btn-default" id="inputCountry">{{newModel.countryTitle}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle">
+                            <span class="caret"></span>
+                            <span class="sr-only">Split button!</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li ng-repeat-start="country in countries"  ng-click="newModel.currentCountryId = country.id; newModel.country = country.name; newModel.province = null" >{{country.name}}</li>
+                            <li ng-repeat-end class="divider" ng-if="$index + 2 == countries.length "></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <input class="form-control " ng-model="newModel.country" id="disabledInput2" type="text" placeholder="Please Choose Country..." disabled>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.country.showError"></span>
+                </div>
+            </div>
+
+            <!-- -->
+
+            <!--Province  -->
+            <div class="form-group " ng-class="validation.province.errorClass">
+                <label for="inputProvince" class="col-sm-2 col-lg-2 control-label">Province</label>
+                <div class="col-sm-2">
+                    <div class="btn-group" dropdown>
+                        <button type="button" class="btn btn-default" id="inputProvince">{{newModel.provinceTitle}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle">
+                            <span class="caret"></span>
+                            <span class="sr-only">Split button!</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-repeat-start="province in provinces | exactCountryId:{countryId: newModel.currentCountryId}:'countryId' " ng-click='newModel.currentProvinceId = province.id;newModel.province = province.name'>{{province.name}}</li>
+                            <li ng-repeat-end class="divider" ng-if="$index + 2 == provinces.length "></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <input class="form-control " ng-model="newModel.province" id="disabledProvinceInput" type="text" placeholder="Please Choose Province..." disabled>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.province.showError"></span>
+                </div>
+            </div>
+            <!-- -->
+
+            <div class="form-group " ng-class="validation.contactInfo.errorClass">
+                <label for="txtContact" class="col-sm-2 control-label">Contact info</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="txtContact" ng-model="newModel.contactInfo" placeholder="Enter hotline # or email address to contact">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.contactInfo.showError"></span>
+                </div>
+            </div>
+            <div class="form-group " ng-class="validation.description.errorClass">
+                <label for="txtareaDesc" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-9">
+                    <textarea rows="5" class="form-control" ng-model="newModel.description" id="txtareaDesc" ng-required placeholder="description ..."></textarea>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.description.showError"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-0 col-sm-1  col-md-offset-8 col-md-2">
+                    <button ng-click="Save()" class="btn btn-default btn-lg">Save</button>
+                </div>
+                <div class="col-sm-offset-0 col-sm-1  col-md-offset-0 col-md-2">
+                    <button ng-click="cancel()" class="btn btn-warning btn-lg">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

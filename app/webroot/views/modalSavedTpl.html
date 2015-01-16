@@ -1,0 +1,13 @@
+<div class="modal-header" ng-show="hasModalTitle">
+    <h3 class="modal-title"> <strong>{{modalTitle}}</strong></h3>
+</div>
+<div class="modal-body">
+    <span class=" fa-stack fa-md" style="color: lightgreen;">
+        <i class="fa fa-circle-o fa-5 fa-stack-2x glyphs"></i>
+        <i class="fa fa-check fa-5 fa-stack-1x "></i>
+    </span> {{modalContent}}
+</div>
+<div class="modal-footer" ng-show="modalshowCloseButton">
+    <button class="btn btn-warning btn-lg brwnBtn" ng-click="ok()">OK</button>
+
+</div>

@@ -1,0 +1,84 @@
+
+
+    <div class="modContent">
+
+            <div class="">
+                <div class="col-xs-12  col-lg-8" >
+                    <form class="form-inline spacer" role="form">
+
+                        <div id="leafletContainer" style="background-color: #009900;" class="maxWidthHeight">
+                            <oz-d3-map generate-leaflet="true" disabled-zooming="true" leaflet-container-id="leafletContainer" process-coord="processLatLong"
+                                       highlight-on-mouse-over="true" get-map="getMap(parentEntity)" area-class="countriesClass" scale="2" get-map-updater="getMapUpdate()"
+                                       active-class=" activeCountry" leaflet-enable-marker="true"
+                                       set-leaflet-lat-long-coord="getLeafletLatLongCoord"
+                                        get-leaflet-lat-long-coord-updater="setLeafletLatLongCoord()"></oz-d3-map>
+                        </div>
+
+                        <button ng-click="btnGetCurrentGeoLocation()" popover-placement="top" popover='click button to select current location or click inside the highlighted region inside the map' popover-trigger="mouseenter" type="button" class="btn btn-primary btn-lg .btn-block col-xs-12 spacer ">Choose current location</button>
+
+
+                        <div class="form-group" ng-class="validation.longitude.errorClass">
+                            <label class="" for="inputLong">Longitude</label>
+                            <input ng-model="reportViewModel.model.longitude" type="text" class="form-control" id="inputLong" placeholder="Longitude" readonly popover-placement="top" popover='click inside the highlighted region of the map to select a location for the suspected case' popover-trigger="mouseenter" >
+                            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.longitude.showError"></span>
+                        </div>
+                        <div class="form-group" ng-class="validation.latitude.errorClass">
+                            <label class="" for="InputLat">Latitude</label>
+                            <input ng-model="reportViewModel.model.latitude" type="text" class="form-control " id="InputLat" placeholder="Latitude" readonly popover-placement="top" popover='click inside the highlighted region of the map to select a location for the suspected case'  popover-trigger="mouseenter"  >
+                            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.longitude.showError"></span>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="col-xs-12  col-lg-4" >
+
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group" ng-class="validation.suspectedCase.errorClass">
+
+                                <select class="form-control input-lg" placeholder="Latitude" ng-model="reportViewModel.model.infection" ng-options="caseType.id as caseType.name for caseType in caseTypes"  >
+                                    <option value="">-- choose infection type --</option>
+                                </select>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.suspectedCase.showError"></span>
+                        </div>
+
+
+                        <div class="form-group" ng-class="validation.dateDetected.errorClass">
+
+                            <div >
+                                <p class="input-group input-group-lg">
+                                    <input show-button-bar="false" type="text" class="form-control input-lg" datepicker-popup="{{dateFormat}}" ng-model="reportViewModel.model.initiallyDetected" is-open="dateControlOpened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                      <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="dateControlOpened = true" ng-focus=" dateControlOpened = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                      </span>
+                                </p>
+                            </div>
+                            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.dateDetected.showError" ></span>
+                        </div>
+
+                        <div class="form-group" ng-class="validation.synop.errorClass">
+                        <div class="col-sm-12 " >
+                            <textarea rows="5" class="form-control input-lg" ng-model="reportViewModel.model.synop" id="txtareaGeom" placeholder="Please provide a brief description"></textarea>
+                            <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="validation.synop.showError" ></span>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <form class="form-horizontal spacer" role="form">
+                        <div class="form-group" >
+                            <div class=" col-sm-12">
+                                <div class="alert alert-success " ng-class="reportViewModel.buttonsDivClass" role="alert" ng-click="reportViewModel.saveReport()">
+                                    <a  class="alert-link col-xs-offset-6">Save</a>
+                                </div>
+                                <div class="alert alert-danger " ng-class="reportViewModel.buttonsDivClass" role="alert" ng-click="reportViewModel.cancelReport()">
+                                    <a  class="alert-link col-xs-offset-6">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+    </div>

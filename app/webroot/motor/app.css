@@ -1,0 +1,514 @@
+/* make sidebar nav vertical */
+@media (max-width : 1220px) {
+    .sidebar-nav .navbar li.li-header{
+        display: none!important;
+    }
+    .navbar{
+        background-image: -webkit-linear-gradient(top,#fff 0,#f8f8f8 100%);
+        background-image: -o-linear-gradient(top,#fff 0,#f8f8f8 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#f8f8f8));
+        background-image: linear-gradient(to bottom,#fff 0,#f8f8f8 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        background-repeat: repeat-x;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075)
+    }
+    .navbar .navbar-toggle .icon-bar {
+        background-color: #888;
+    }
+    .navbar .navbar-toggle {
+        border-color: #ddd;
+    }
+}
+
+@media (min-width: 350px){
+    div.statusBar.alert{
+        width: 100%;
+        margin-bottom: 0px;
+        position:fixed;
+        top:94%;
+        opacity: 1;
+    }
+    div.fillBody{
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    .statusBar.ng-hide {
+        animation: statusBarAnim linear .5s;
+        animation-iteration-count: 1;
+        animation-fill-mode:forwards;
+    }
+    @keyframes statusBarAnim {
+        0%{opacity: 1}
+        50%{opacity: .5}
+        100%{opacity: .1}
+    }
+    .modal-content {
+        box-shadow: 0 5px 15px rgba(45, 200, 53, 0.28);
+    }
+    .modal-content {
+        border: 2px solid rgba(38, 211, 54, 1);
+    }
+
+    .brwnBtn{
+        background-color: #F7C607;
+        background-image: linear-gradient(to bottom, #f7da23 0, #ca9b10 100%);
+    }
+
+    .modal-footer {
+        border-top: 1px solid #27d337;
+    }
+    .modal-header {
+        border-bottom: 1px solid #94d396;
+    }
+
+   /* .btn-primary:focus, .btn-primary:hover {
+        background-color: #ca9b10;
+        background-position: 0 -15px;
+    }*/
+
+    .modMenu{
+        display: box;
+    }
+    .modContent{
+        overflow:hidden;
+        position:relative;
+    }
+
+    .slide-animate{
+        margin-top: 10px;
+    }
+
+    .slide-animate.ng-enter, .slide-animate.ng-leave {
+        transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        display:block;
+    }
+
+    .slide-animate.ng-enter {
+        left:5000px;
+    }
+    .slide-animate.ng-enter.ng-enter-active {
+        left:0;
+    }
+
+    .slide-animate.ng-leave {
+        left:0;
+    }
+    .slide-animate.ng-leave.ng-leave-active {
+        left:-5000px;
+    }
+
+    .forms, .forms input, .forms textarea, .forms button{
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 16px;
+
+    }
+    .forms li, .freeBtn {
+        cursor: pointer;
+    }
+    .forms li:hover{
+        background-color: #428bca;
+        color: #ffffff;
+        font-size: 18px;
+    }
+    .panelHeaderSmple{
+        display: inline;
+    }
+    .panelHeaderSmple, .panelHeaderSmple > .panel-heading{
+        background-color: #ffffff;
+        border-left-color: #ffffff;
+        border-right-color: #ffffff;
+        border-bottom-color: #ffffff;
+        border: none;
+        background-image: none;
+    }
+
+    .transparentBckgrnd.panelHeaderSmple, .transparentBckgrnd.panelHeaderSmple > .panel-heading{
+        background-color: rgba(255, 255, 255, 0);
+        border-left-color: rgba(255, 255, 255, 0);
+        border-right-color: rgba(255, 255, 255, 0);
+        border-bottom-color: rgba(255, 255, 255, 0);
+        border: none;
+        background-image: none;
+        user-select: none;
+    }
+
+    .panelHeaderSmple.panel-heading{
+        padding: 0px;
+        border-image: none;
+        border-color: transparent;
+        border-left-color: #ffffff;
+        border-right-color: #ffffff;
+        border-bottom-color: #ffffff;
+        box-shadow: none;
+        user-select: none;
+    }
+    .panel-group .panel-heading+.panel-collapse>.panel-body {
+        border-top: none;
+    }
+    .countryTitle{
+        position: absolute;
+        vertical-align: bottom;
+        top: 22.5px;
+        left:2px;
+        cursor: none;
+        pointer-events:none;
+    }
+
+    .calebass{
+        display: none!important;
+    }
+    .sourinie{
+        display: inline-block!important;
+    }
+    .divBtn{
+        cursor: pointer;
+    }
+    .divBtnDisabled{
+        cursor: wait;
+        /*pointer-events:none;*/
+
+    }
+    svg{
+        cursor: -webkit-grab;
+    }
+    svg:active{
+        cursor: move;
+    }
+    .countriesClass{
+        stroke: black;
+        stroke-width: .02em;
+        fill: orange;
+        fill-opacity: .7;
+        cursor: pointer;
+    }
+    .countriesClass:hover{
+        stroke: #e7ebdc;
+        stroke-width: .09em;
+        fill: orange;
+        fill-opacity: 1;
+    }
+
+    .countriesClass.activeCountry{
+        stroke: #ffa018;
+        stroke-width: .01em;
+        fill: #fffe86;
+        fill-opacity: .4;
+    }
+    .countriesClass.activeCountry:hover{
+        stroke: #ffa605;
+        stroke-width: .1em;
+        fill: #fffb1b;
+        fill-opacity: .8;
+    }
+    .maxWidthHeight{
+        border-color: #66afe9;
+        border-radius: 5px;
+        border-width: 2px;
+        outline-width: 1px;
+        outline-style: dashed;
+        outline-color: #66afe9;
+    }
+
+    .btn-clipboard, .btn-clipboard:active {
+        float: right;
+        /* margin: 8px; */
+        border-width: 0px;
+        border-color: black;
+        border-left-width: .08em;
+        border-bottom-width: .08em;
+        border-top-left-radius: 0;
+        border-top-width: 0px;
+        border-bottom-right-radius: 0;
+        box-shadow: none;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(21, 10, 111, 0.80);
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .form-control-feedback:before {
+        clear: left;
+        margin-left: 100%;
+        /* float: right; */
+    }
+    .spacer
+    {
+        margin-top:2px;
+        margin-bottom: 3px;
+    }
+    #leafletContainer, .leafletContainer
+    {
+        min-height: 500px;
+    }
+
+    .coqPending{
+        position: absolute;
+        padding-left: 40%;
+        padding-top: 37%;
+        padding-right: 53%;
+        padding-bottom: 45%;
+        background-color: rgba(222, 223, 229, 0.86);
+        margin-left: -2%;
+        margin-right: -2.2%;
+        border-radius: 15px;
+        border-style: solid;
+        z-index: 5;
+    }
+    #casePendingleafletContainer{
+        min-height: 300px;
+    }
+
+    .ovrSvgVisible svg{
+        overflow: visible;
+    }
+}
+@media (min-width: 768px){
+    .affix-content .container {
+        width: 700px;
+    }
+
+    html,body{
+        background-color: #f8f8f8;
+        height: 100%;
+        overflow: hidden;
+    }
+    .affix-content .container .page-header{
+        margin-top: 0;
+    }
+
+    .affix-sidebar{
+        padding-right:0;
+        font-size:small;
+        padding-left: 0;
+        height: 100%;
+    }
+    .affix-row, .affix-container, .affix-content{
+        height: 100%;
+        overflow: scroll;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .affix-content{
+        background-color:white;
+    }
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav .navbar{
+        border-radius:0;
+        margin-bottom:0;
+        border:0;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+}
+    .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+    .nav, .pagination, .carousel, .panel-title a {cursor: pointer; }
+
+    .countryTitle{
+        position: absolute;
+        /*vertical-align: middle;*/
+        top: 30.5px;
+        right: 100px;
+
+    }
+
+    a.masterListAnchor::after /*li:hover::after, .masterList a:focus::after, .masterList a:active::after, .masterList a:visited::after  , .masterList li:focus::after, .masterList li:visited::after, .masterList li::selection::after*/ {
+        position: absolute;
+        content: "\25B6";
+        /*padding-left: 100%;*/
+        float: right;
+        /*top: -85%;
+        font-size: 70px;
+        left: 98%;*/
+        top: 1%;
+        font-size: 30px;
+        left: 99%;
+        color: #ddd;
+    }
+    .masterListAnchor /*li:hover*/{
+        background-color: #f5f5f5;
+        cursor: pointer;
+    }
+    .masterList a{
+        cursor: pointer;
+    }
+    .reducedLeftMargin{
+        margin-left: 2px;
+    }
+
+
+}
+
+@media (min-width: 769px){
+    .affix-content .container {
+        width: 600px;
+    }
+    .affix-content .container .page-header{
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 992px){
+    .affix-content .container {
+        width: 900px;
+    }
+    .affix-content .container .page-header{
+        margin-top: 0;
+    }
+    .calebass{
+        display: inline-block!important;
+    }
+    .sourinie{
+        display: none!important;
+    }
+    .maxWidthHeight{
+        min-height: 500px;
+    }
+}
+
+@media (min-width: 1220px){
+    .affix-row{
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+
+    .affix-content{
+        overflow: auto;
+    }
+
+    .affix-content .container {
+        width: 1000px;
+    }
+
+    .affix-content .container .page-header{
+        margin-top: 0;
+    }
+    .affix-content{
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+    .affix-title{
+        border-bottom: 1px solid #ecf0f1;
+        padding-bottom:10px;
+    }
+    .navbar-nav {
+        margin: 0;
+    }
+    .navbar-collapse{
+        padding: 0;
+    }
+    .sidebar-nav .navbar li a:hover {
+        background-color: transparent;
+        color: white;
+    }
+    .sidebar-nav .navbar li a > .caret {
+        margin-top: 8px;
+    }
+
+    .sidebar-nav .navbar li a{
+        line-height: 2.5;
+    }
+
+    .sidebar-nav .navbar li.li-header{
+        display: block;
+        font-size: 15em!important;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+        font-size: 17px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-shadow: 1px 5px 5px rgba(46, 194, 229, 0.65);
+    }
+    .sidebar-nav .navbar li:not(.li-header){
+        height: 64px;
+        border-top-width: thin;
+        border-top-style: solid;
+        border-top-color: #729DD7;
+        padding-left: 3%;
+    }
+    .sidebar-nav .navbar li:not(.li-header):hover, .sidebar-nav .navbar li a:active, .sidebar-nav .navbar li a:focus
+    {
+        background-color: #428bca;
+        border-bottom-width: thin;
+        border-bottom-style: solid;
+        border-bottom-color: #729DD7;
+    }
+    .sidebar-nav .navbar li:not(.li-header):hover > a{
+        color: white;
+        text-shadow: 1px -1px 1px rgba(253, 253, 252, 0);
+    }
+    .sidebar-nav .navbar li:not(.li-header) > a{
+        text-shadow: 1px -1px 1px rgba(253, 253, 252, 1);
+    }
+    .glyphs{
+        font-size: 2em!important;
+    }
+    .glyphs-top-right{
+        font-size: 2em!important;
+        margin-left: 13px;
+        margin-top: -13px;
+    }
+    .affix-sidebar{
+        padding-right:0;
+        font-size:small;
+        padding-left: 0;
+        height: 100%;
+        background-color: rgba(0, 171, 236, 1);
+    }
+    .sidebar-nav{
+        background-color: rgba(0, 171, 236, 0.68);
+    }
+
+    .floatLeftonMaxWidth
+    {
+        position: absolute;
+        right: 0px;
+    }
+
+    .centerFloat{
+        position: absolute;
+        top: 2px;
+        left: 20%;
+    }
+
+    .magnifyMap{
+        min-height: 675px;!important;
+    }
+    .fullHeight{
+        height: 100%;
+    }
+
+    .fullWidth{
+        width: 100%;
+    }
+
+}
