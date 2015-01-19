@@ -38,10 +38,11 @@ class Province extends AppModel {
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
-				//'required' => false,
+				//'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
+        /*,
 			'maxLength' => array(
 				'rule' => array('maxLength'),
 				//'message' => 'Your custom message here',
@@ -49,7 +50,8 @@ class Province extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)*/
+        /*,
 			'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				//'message' => 'Your custom message here',
@@ -57,17 +59,17 @@ class Province extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 		),
 		'geometry' => array(
-			'alphaNumeric' => array(
+			/*'alphaNumeric' => array(
 				'rule' => array('alphaNumeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			),*/
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -75,14 +77,14 @@ class Province extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'country_id' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -93,8 +95,8 @@ class Province extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+			)
+		)
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

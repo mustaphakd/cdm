@@ -26,27 +26,27 @@ class Dcase extends AppModel {
 	public $validate = array(
 		'id' => array(
 			'blank' => array(
-				'rule' => array('blank'),
+				'rule' => array('blank')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'description' => array(
 			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
+				'rule' => array('minLength', 3),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => true
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'casesstatus_id' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('numeric')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -54,17 +54,17 @@ class Dcase extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'province_id' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('numeric')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -72,57 +72,57 @@ class Dcase extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'country_id' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('numeric')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'dateconfirmed' => array(
 			'datetime' => array(
-				'rule' => array('datetime'),
+				'rule' => array('datetime', 'ymd')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'initiallydetected' => array(
 			'datetime' => array(
-				'rule' => array('datetime'),
+				'rule' => array('datetime')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'initiallyreported' => array(
 			'datetime' => array(
-				'rule' => array('datetime'),
+				'rule' => array('datetime')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'locationlat' => array(
 			'maxLength' => array(
-				'rule' => array('maxLength'),
+				'rule' => array('maxLength', 255)
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -130,17 +130,17 @@ class Dcase extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'locationlong' => array(
 			'maxLength' => array(
-				'rule' => array('maxLength'),
+				'rule' => array('maxLength', 255)
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -148,17 +148,17 @@ class Dcase extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'disease_id' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('numeric')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -166,14 +166,14 @@ class Dcase extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+			)
+		)
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -184,8 +184,8 @@ class Dcase extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Casesstatus' => array(
-			'className' => 'Casesstatus',
+		'Casestatus' => array(
+			'className' => 'Casestatus',
 			'foreignKey' => 'casesstatus_id',
 			'conditions' => '',
 			'fields' => '',

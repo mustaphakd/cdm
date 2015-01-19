@@ -30,4 +30,10 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    function get($field=null) {
+        if(isset($this->data[$this->alias][$field]))
+            return $this->data[$this->alias][$field];
+        return null;
+    }
 }

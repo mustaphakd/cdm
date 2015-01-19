@@ -22,17 +22,17 @@ class Disease extends AppModel {
 	public $validate = array(
 		'id' => array(
 			'blank' => array(
-				'rule' => array('blank'),
+				'rule' => array('blank')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'name' => array(
 			'maxLength' => array(
-				'rule' => array('maxLength'),
+				'rule' => array('maxLength')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -40,24 +40,24 @@ class Disease extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'description' => array(
 			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
+				'rule' => array('alphaNumeric')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+			)
+		)
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

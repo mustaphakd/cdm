@@ -825,11 +825,12 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
 
         $scope.loadNotes = function(caseId){
 
+            $scope.showNotification("Loading note...");
             $scope.processing = true;
             // pass in the dcaseId
             $scope.caseService.loadNotes(caseId).then(function(arrNotesData){
                 var arrNotesDataLength = arrNotesData.length;
-
+                $scope.AnimHideNotification();
                 for(var i = 0; i < arrNotesDataLength; i++)
                 {
                     $scope.notes.push({id: arrNotesData[i].id, date: arrNotesData[i].quand, note: arrNotesData[i].detail , status: "unchanged"});
@@ -872,9 +873,11 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
             $scope.processing = true;
             var item = $scope.notes.pop();
 
+            $scope.showNotification("Saving Note ....");
+
             $scope.caseService.saveNote({quand: new Date(), detail: item.note, dcaseId: $scope.selectedItemId }).then(function(data){
                 $scope.notes = [];
-
+                $scope.AnimHideNotification();
                 var timeoutToken = $timeout(function(){
                     $timeout.cancel(timeoutToken);
                     timeoutToken = null;
@@ -898,6 +901,8 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
 
         $scope.initMod = function(){
             //if(!$scope.modInitialized) {
+
+            $scope.showNotification("Loading ....");
 
             $scope.caseTypes = [];
             $scope.selectedItemCaseTypes = [];
@@ -954,6 +959,7 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
                         casesData = null;
                         $scope.markersLoader.notify(null);
                         $scope.processing = false;
+                        $scope.AnimHideNotification();
 
                     }, function (msg) {
                         $scope.showNotification("Error loading cases ....");
@@ -1061,7 +1067,7 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
                     $scope.notes = [];
                     $scope.initMod();
                 },
-                function(msg){ $scope.showNotification("Error updating cases status ...."); });
+                function(msg){ $scope.showNotification("Error updating cases status ...." + msg); });
         };
 
         /********************* map leaflet  **/
@@ -1193,7 +1199,7 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
 
         $scope.getNextViewUrl = function(){
             $scope.viewModel = 'pending';
-            //$scope.caseViewUrl = 'views/cases/pending.html' ;
+            $scope.caseViewUrl = 'views/cases/pending.html' ;
             return 'views/cases/pending.html';
         };
 
@@ -1209,21 +1215,7 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
 
         $scope.dateMonthFormat = d3.time.format("%b");
         $scope.dateYearFormat = d3.time.format("%Y");
-        /*
-         $scope.cases.push(
-         {
-         id: casesData[i].id,
-         name: "testdf" + casesData[i].id,
-         date: casesData[i].initiallyReported,
-         caseType: casesData[i].diseaseTypeId,
-         caseStatus: casesData[i].caseStatusId,
-         synop: casesData[i].description,
-         clClass: null,
-         statusEdited: false,
-         originalCaseStatus: casesData[i].caseStatusId
-         }
-         );
-        */
+
         $scope.getDiseaseName = function(diseaseTypeId){
             var length = $scope.diseaseTypes.length;
 
@@ -1259,8 +1251,8 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
                 $scope.cases[i].diseaseName = $scope.getDiseaseName($scope.cases[i].caseType);
                 $scope.cases[i].caseStatusName = $scope.getCaseStatusName($scope.cases[i].caseStatus);
                 //$scope.cases[i].dDate =  ...;
-                $scope.cases[i].year =  $scope.dateYearFormat($scope.cases[i].date);
-                $scope.cases[i].month = $scope.dateMonthFormat($scope.cases[i].date);
+                $scope.cases[i].year =  $scope.dateYearFormat(new Date($scope.cases[i].date));
+                $scope.cases[i].month = $scope.dateMonthFormat(new Date($scope.cases[i].date));
             }
 
             $scope.clearXDimensions();
@@ -1321,12 +1313,17 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
             {
                 if(!$scope.chartInit)
                 {
+                    $scope.showNotification("Loading case types....");
 
                     $scope.caseService.getCaseTypes().then(function(data){
-                        $scope.diseaseTypes = data;
+                            $scope.AnimHideNotification();
+                            $scope.diseaseTypes = data;
 
                         $scope.chartInit = true;
                         $scope.configureChartDimenstion();
+                    },
+                    function(failMsg){
+                        $scope.showNotification("Error: " + failMsg);
                     });
 
                 }
@@ -1379,7 +1376,7 @@ appControllers.controller('addCaseController', ['$scope', '$routeParams', '$loca
 
 appControllers.controller('reportcaseController', ['$scope', '$routeParams', '$location', 'reportCaseService','regionService', '$q', '$timeout', '$window', '$interval',
     function ($scope, $routeParams, $location, reportCaseService, regionService, $q, $timeout, $window, $interval) {
-        debugger;
+       //debugger;
         $scope.reportCaseService = reportCaseService;
         $scope.regionService = regionService;
         $scope.$routeParams = $routeParams;
@@ -1398,6 +1395,8 @@ appControllers.controller('reportcaseController', ['$scope', '$routeParams', '$l
 
             var localCache = [];
 
+            $scope.showNotification("Loading selectable areas ...");
+
             $scope.regionService.getCountries().then(
                 function (data) {
 
@@ -1411,14 +1410,22 @@ appControllers.controller('reportcaseController', ['$scope', '$routeParams', '$l
 
                             var arrLength = data[0].objects.length;
 
+                            $scope.AnimHideNotification();
+
                             for (var i = 0; i < arrLength; i++) {
                                 localCache[0].objects.push(data[0].objects[i])
                             }
                             countriesPromese.resolve(localCache);
 
                             localCache = null;
+                        },
+                        function(failMsg){
+                            $scope.showNotification("Error: " + failMsg);
                         }
                     );
+                },
+                function(failMsg){
+                    $scope.showNotification("Error: " + failMsg);
                 }
             );
 
@@ -1575,9 +1582,14 @@ appControllers.controller('reportcaseController', ['$scope', '$routeParams', '$l
             $scope.thankUmessage = $scope.cancelMessage;
 
             $scope.reportViewModel.resetModel();
-            $scope.viewUrl = "views/caseReport/thankyou.html";
 
 
+            if(angular.isDefined($scope.getNextViewUrl))
+            {
+                $scope.viewUrl = $scope.getNextViewUrl();
+            }
+            else
+                $scope.viewUrl = "views/caseReport/thankyou.html";
         };
 
         $scope.reportViewModel.resetModel = function(){
@@ -1837,11 +1849,14 @@ appControllers.controller('regionController', ['$scope', '$routeParams', '$locat
                 break;
 
                 default :
+                    $scope.showNotification("Saving new model : " + $scope.addViewModel.newModel.name);
                     $scope.regionService.addNewCountry({name: $scope.addViewModel.newModel.name, coord: coordinates || ""}).then(
                         function(succeed){
 
                             $scope.addViewModel.setProcessing(false);
                             $scope.addViewModel.collapseAddNewCountry();
+
+                            $scope.AnimHideNotification();
 
                             if( $scope.countries != null) {
                                 //debugger;
@@ -1865,6 +1880,7 @@ appControllers.controller('regionController', ['$scope', '$routeParams', '$locat
                         function(failMsg){
                             $scope.addViewModel.setProcessing(false);
                             $scope.addViewModel.collapseAddNewCountry();
+                            $scope.showNotification("Error persisting new Model ");
                         }
                     );
                 break;
@@ -1901,12 +1917,13 @@ appControllers.controller('regionController', ['$scope', '$routeParams', '$locat
 
     $scope.addViewModel.saveProvince = function(provinceData)
     {
+        $scope.showNotification("Saving new Province: " + provinceData.name);
         $scope.regionService.addNewProvince($scope.addViewModel.selectedCountryId, provinceData).then(
             function(succeed){
 
                 $scope.addViewModel.setProcessing(false);
                 $scope.addViewModel.collapseAddNewCountry();
-
+                $scope.AnimHideNotification();
                     var model = {
                         requiredAction :"viualAppend",
                         actualData: {
@@ -1922,6 +1939,7 @@ appControllers.controller('regionController', ['$scope', '$routeParams', '$locat
 
             },
             function(failMsg){
+                $scope.showNotification(failMsg);
                 $scope.addViewModel.setProcessing(false);
                 $scope.addViewModel.collapseAddNewCountry();
             }
@@ -1974,11 +1992,18 @@ appControllers.controller('regionController', ['$scope', '$routeParams', '$locat
             case 'province':
                 $scope.addViewModel.selectedCountryId = parentEntity.area.properties.id;
                 $scope.addViewModel.updateFormControls();
+                $scope.showNotification("Loading country's provinces ...");
                 $scope.regionService.getProvinces($scope.addViewModel.selectedCountryId).then(
                     function (data) {
 
-                        data[0].getID = $scope.mapGetID;
+                        $scope.AnimHideNotification();
+
+                        if(data.length > 0)
+                            data[0].getID = $scope.mapGetID;
                         countriesPromese.resolve(data);
+                    },
+                    function(failMsg){
+                        $scope.showNotification(failMsg);
                     }
                 );
             break;
@@ -1986,11 +2011,15 @@ appControllers.controller('regionController', ['$scope', '$routeParams', '$locat
             case 'country' :
                 $scope.addViewModel.updateFormControls();
                 if($scope.countries == null) {
+                    $scope.showNotification("Loading countries ....");
                     $scope.regionService.getCountries().then(
                         function (data) {
-
+                            $scope.AnimHideNotification();
                             $scope.countries = data;
                             countriesPromese.resolve(data);
+                        },
+                        function(failMsg){
+                            $scope.showNotification(failMsg);
                         }
                     );
                 }
@@ -2460,8 +2489,11 @@ appControllers.controller('infoController', ['$scope', '$routeParams', '$locatio
     $scope.LoadInfos = function(){
         //$scope.infos = [];
 
+        $scope.showNotification( 'Loading infos..');
+
         $scope.infomationService.fetchInfos().then(function(data){
             $scope.infos = data;
+            $scope.AnimHideNotification();
         },function(msg){
             $scope.showNotification( 'Error loading Information Hotlines ...' + msg);
         });

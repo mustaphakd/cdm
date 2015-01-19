@@ -22,35 +22,36 @@ class Note extends AppModel {
 	public $validate = array(
 		'id' => array(
 			'blank' => array(
-				'rule' => array('blank'),
+				'rule' => array('blank')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			)
 		),
 		'detail' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('minLength', 5)
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'alphaNumeric' => array(
-				'rule' => array('alphaNumeric'),
+			)
+			//,
+			//'alphaNumeric' => array(
+				//'rule' => array('minLength', 5),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				//'allowEmpty' => false
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			//)
 		),
 		'quand' => array(
 			'datetime' => array(
-				'rule' => array('datetime'),
+				'rule' => array('datetime')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -60,7 +61,7 @@ class Note extends AppModel {
 		),
 		'dcase_id' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('numeric')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -68,14 +69,14 @@ class Note extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notEmpty')
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+			)
+		)
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
